@@ -1,0 +1,5 @@
+*.pem
+.env
+.aws/
+credentials*
+node_modules/
