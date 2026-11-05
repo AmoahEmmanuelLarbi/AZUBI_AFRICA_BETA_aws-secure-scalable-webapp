@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure, scalable, and highly available web application deployed on AWS.">
+    <title>MyCloudApp | AWS Capstone Deployment</title>
+    
+    <!-- CSS served via S3/CloudFront -->
+    <link rel="stylesheet" href="/assets/style.css">
+    <!-- FontAwesome for professional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- JS served via S3/CloudFront -->
+    <script src="/assets/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-cloud"></i> MyCloudApp
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Beta's Deployed Web App</h1>
+            <p>Served securely via CloudFront CDN · Routed by Application Load Balancer · Hosted on EC2</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">View Dashboard</a>
+                <a href="https://github.com/AmoahEmmanuelLarbi/AZUBI_AFRICA_BETA_aws-secure-scalable-webapp" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub Repo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Architecture Features -->
+    <section class="features">
+        <div class="card card-green">
+            <div class="icon-wrapper"><i class="fa-solid fa-lock"></i></div>
+            <h3>HTTPS Secured</h3>
+            <p>SSL via ACM + CloudFront Edge</p>
+        </div>
+        <div class="card card-orange">
+            <div class="icon-wrapper"><i class="fa-solid fa-scale-balanced"></i></div>
+            <h3>Load Balanced</h3>
+            <p>ALB Health Checks Active</p>
+        </div>
+        <div class="card card-blue">
+            <div class="icon-wrapper"><i class="fa-solid fa-globe"></i></div>
+            <h3>CDN Enabled</h3>
+            <p>Global CloudFront Edge Caching</p>
+        </div>
+        <div class="card card-purple">
+            <div class="icon-wrapper"><i class="fa-solid fa-code-branch"></i></div>
+            <h3>CI/CD Live</h3>
+            <p>GitHub Actions Pipeline</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Beta group Capstone. Built for Azubi Africa.</p>
+        <p class="footer-sub">Architected for Security, Scalability, and High Availability.</p>
+    </footer>
+</body>
+</html>
+
