@@ -1,74 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Secure, scalable, and highly available web application deployed on AWS.">
-    <title>MyCloudApp | AWS Capstone Deployment</title>
-    
-    <!-- CSS served via S3/CloudFront -->
-    <link rel="stylesheet" href="/assets/style.css">
-    <!-- FontAwesome for professional icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- JS served via S3/CloudFront -->
-    <script src="/assets/script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GroupBetaEdu - learn new skills with flexible online courses.">
+  <title>GroupBetaEdu | Learn Without Limits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-cloud"></i> MyCloudApp
+  <main class="page-shell">
+    <header class="navbar">
+      <a class="brand" href="#" aria-label="GroupBetaEdu home">GroupBeta<span>Edu</span><b>.</b></a>
+      <form class="search-box" id="searchForm">
+        <span aria-hidden="true">⌕</span>
+        <input id="courseSearch" type="search" placeholder="Search courses" aria-label="Search courses">
+        <button type="submit" aria-label="Search">↵</button>
+      </form>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks">
+        <div class="nav-dropdown">
+          <button class="nav-item dropdown-toggle" data-menu="subjectsMenu">Subjects <span>⌄</span></button>
+          <div class="dropdown-menu" id="subjectsMenu">
+            <button data-category="Technology">Technology</button>
+            <button data-category="Business">Business</button>
+            <button data-category="Design">Design</button>
+            <button data-category="Personal Development">Personal Development</button>
+          </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Beta's Deployed Web App</h1>
-            <p>Served securely via CloudFront CDN · Routed by Application Load Balancer · Hosted on EC2</p>
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">View Dashboard</a>
-                <a href="https://github.com/AmoahEmmanuelLarbi/AZUBI_AFRICA_BETA_aws-secure-scalable-webapp" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub Repo</a>
-            </div>
-        </div>
+        <a class="nav-item" href="#courses">Courses <span>⌄</span></a>
+        <a class="nav-item" href="#degrees">Degrees <span>⌄</span></a>
+        <a class="nav-item" href="#business">Business</a>
+        <button class="login-link" id="loginBtn">Login</button>
+        <button class="join-nav" id="joinBtn">Join for Free</button>
+      </nav>
     </header>
 
-    <!-- Architecture Features -->
-    <section class="features">
-        <div class="card card-green">
-            <div class="icon-wrapper"><i class="fa-solid fa-lock"></i></div>
-            <h3>HTTPS Secured</h3>
-            <p>SSL via ACM + CloudFront Edge</p>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> LEARN. GROW. ACHIEVE.</div>
+        <h1>Learn Without<br>Limits</h1>
+        <p class="hero-description">Build your future with practical online courses, expert instructors and skills that move your career forward.</p>
+        <button class="primary-cta" id="heroJoin">Join for Free <span>→</span></button>
+        <div class="expert-row">
+          <div class="avatar-stack">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=90&h=90&fit=crop&crop=faces" alt="Learner">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=90&h=90&fit=crop&crop=faces" alt="Learner">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=90&h=90&fit=crop&crop=faces" alt="Learner">
+            <span>20+</span>
+          </div>
+          <div><strong>Learn with a community</strong><small>Experts and learners worldwide</small></div>
         </div>
-        <div class="card card-orange">
-            <div class="icon-wrapper"><i class="fa-solid fa-scale-balanced"></i></div>
-            <h3>Load Balanced</h3>
-            <p>ALB Health Checks Active</p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-blob"></div>
+        <div class="floating-heart">♥</div>
+        <div class="floating-spark">✳</div>
+        <div class="floating-waves">≋≋≋</div>
+        <img class="main-student" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=850&h=1050&fit=crop&crop=faces" alt="Happy university students learning together">
+        <div class="image-caption"><span>✦</span> Your next chapter starts here</div>
+      </div>
+
+      <aside class="success-card">
+        <div class="success-photo">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=420&h=420&fit=crop&crop=faces" alt="Smiling student">
         </div>
-        <div class="card card-blue">
-            <div class="icon-wrapper"><i class="fa-solid fa-globe"></i></div>
-            <h3>CDN Enabled</h3>
-            <p>Global CloudFront Edge Caching</p>
-        </div>
-        <div class="card card-purple">
-            <div class="icon-wrapper"><i class="fa-solid fa-code-branch"></i></div>
-            <h3>CI/CD Live</h3>
-            <p>GitHub Actions Pipeline</p>
-        </div>
+        <strong class="success-number">Learn<br>something<br><em>new</em></strong>
+        <p>Every skill you gain is a step towards your goals.</p>
+        <div class="success-rating"><span>★★★★★</span> Learner-focused education</div>
+      </aside>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; <span id="year"></span> Beta group Capstone. Built for Azubi Africa.</p>
-        <p class="footer-sub">Architected for Security, Scalability, and High Availability.</p>
+    <section class="stats" aria-label="Learning platform highlights">
+      <article class="stat-item">
+        <div class="stat-icon purple">♧</div>
+        <div><strong>150+</strong><p>Expert-led courses</p></div>
+      </article>
+      <article class="stat-item">
+        <div class="stat-icon blue">▣</div>
+        <div><strong>20 Lessons</strong><p>Average per course</p></div>
+      </article>
+      <article class="stat-item">
+        <div class="stat-icon yellow">◷</div>
+        <div><strong>10 minutes</strong><p>Average lesson time</p></div>
+      </article>
+    </section>
+
+    <section class="courses-section" id="courses">
+      <div class="section-heading">
+        <div><span class="section-kicker">START LEARNING TODAY</span><h2>Explore popular courses</h2><p>Find a course that matches your interests and goals.</p></div>
+        <a href="#allCourses" class="view-all">Explore all courses <span>→</span></a>
+      </div>
+      <div class="category-pills" id="categoryPills">
+        <button class="active" data-category="All">All courses</button>
+        <button data-category="Technology">Technology</button>
+        <button data-category="Business">Business</button>
+        <button data-category="Design">Design</button>
+        <button data-category="Personal Development">Personal Development</button>
+      </div>
+      <div class="course-grid" id="courseGrid"></div>
+      <p class="empty-state" id="emptyState" hidden>No courses match your search. Try another keyword.</p>
+    </section>
+
+    <section class="learning-banner" id="degrees">
+      <div><span class="section-kicker">YOUR FUTURE IS WAITING</span><h2>Small steps today.<br>Big achievements tomorrow.</h2><p>Learn at your own pace and keep track of your progress as you grow.</p></div>
+      <button class="primary-cta" id="bannerJoin">Start learning <span>→</span></button>
+    </section>
+
+    <footer id="business">
+      <a class="brand" href="#">GroupBeta<span>Edu</span><b>.</b></a>
+      <p>Learning made simple. Skills for a brighter future.</p>
+      <span>© <span id="year"></span> GroupBetaEdu. All rights reserved.</span>
     </footer>
+  </main>
+
+  <div class="modal-backdrop" id="authModal" hidden>
+    <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close dialog">×</button>
+      <div class="modal-mark">GB<span>.</span></div>
+      <h2 id="modalTitle">Join GroupBetaEdu</h2>
+      <p id="modalIntro">Create your free learner account and start exploring courses.</p>
+      <form id="authForm">
+        <label id="nameLabel">Full name<input id="fullName" type="text" placeholder="Enter your name" required></label>
+        <label>Email address<input id="email" type="email" placeholder="you@example.com" required></label>
+        <label>Password<input id="password" type="password" placeholder="At least 6 characters" minlength="6" required></label>
+        <button class="primary-cta modal-submit" type="submit" id="authSubmit">Create free account</button>
+      </form>
+      <p class="modal-switch" id="modalSwitch">Already have an account? <button type="button" id="switchAuth">Login</button></p>
+      <p class="form-message" id="formMessage" role="status"></p>
+      <small class="demo-note">Demo interface: account details are not sent to a server.</small>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="courseModal" hidden>
+    <section class="course-modal" role="dialog" aria-modal="true" aria-labelledby="courseModalTitle">
+      <button class="modal-close" id="courseModalClose" aria-label="Close dialog">×</button>
+      <img id="courseModalImage" src="" alt="">
+      <span class="course-category" id="courseModalCategory"></span>
+      <h2 id="courseModalTitle"></h2>
+      <p id="courseModalDescription"></p>
+      <div class="course-modal-meta" id="courseModalMeta"></div>
+      <button class="primary-cta" id="enrolCourseBtn">Enrol in this course <span>→</span></button>
+      <p class="form-message" id="enrolMessage" role="status"></p>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
 </body>
 </html>
-
