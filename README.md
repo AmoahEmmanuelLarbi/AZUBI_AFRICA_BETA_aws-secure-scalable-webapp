@@ -4,6 +4,9 @@ Capstone project by **Team Beta**, Azubi Africa AWS Cloud Computing and AI progr
 
 This project demonstrates the deployment of a highly available, secure, and scalable static web application on the AWS Free Tier, utilizing a hybrid architecture of EC2 and S3.
 
+## Architecture Diagram:
+<img width="1631" height="952" alt="beta_capstone_trello_project drawio" src="https://github.com/user-attachments/assets/9dae8d9c-a535-4fb3-8fe4-2986732f2cf5" />
+
 ## 🚀 Live Site
 **[https://d2x47aax7g5nka.cloudfront.net](https://d2x47aax7g5nka.cloudfront.net)**
 *(Note: Enforces HTTPS via CloudFront)*
