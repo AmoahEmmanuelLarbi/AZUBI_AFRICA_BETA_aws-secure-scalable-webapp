@@ -20,18 +20,24 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          # Force download the latest code and overwrite the web directory
-          sudo wget -q https://github.com/sirrven/AZUBI_AFRICA_BETA_aws-secure-scalable-webapp/archive/refs/heads/develop.zip -O /tmp/deploy.zip
-          
-          # Unzip it
-          sudo yum install -y unzip
-          sudo unzip -o /tmp/deploy.zip -d /tmp/deploy
-          
-          # Copy the files to the web root (force overwrite)
-          sudo cp -r /tmp/deploy/*/* /var/www/html/
-          
-          # Set permissions
+          # 1. Install git if it's missing
+          sudo yum install -y git
+
+          # 2. Delete the temp folder if it exists from a previous run
+          sudo rm -rf /tmp/capstone-deploy
+
+          # 3. Clone the repo into the temp folder
+          sudo git clone -b develop https://github.com/sirrven/AZUBI_AFRICA_BETA_aws-secure-scalable-webapp.git /tmp/capstone-deploy
+
+          # 4. Wipe the current web directory (Careful: this deletes old files)
+          sudo rm -rf /var/www/html/*
+
+          # 5. Copy the new files into the web directory
+          sudo cp -r /tmp/capstone-deploy/* /var/www/html/
+
+          # 6. Set permissions
           sudo chown -R apache:apache /var/www/html
-          
-          # Restart Apache
+          sudo chmod -R 755 /var/www/html
+
+          # 7. Restart Apache
           sudo systemctl restart httpd
