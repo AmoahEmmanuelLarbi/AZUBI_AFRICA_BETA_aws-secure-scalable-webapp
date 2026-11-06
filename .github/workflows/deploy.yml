@@ -1,0 +1,37 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy to EC2 via SSH
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          # Force download the latest code and overwrite the web directory
+          sudo wget -q https://github.com/sirrven/AZUBI_AFRICA_BETA_aws-secure-scalable-webapp/archive/refs/heads/develop.zip -O /tmp/deploy.zip
+          
+          # Unzip it
+          sudo yum install -y unzip
+          sudo unzip -o /tmp/deploy.zip -d /tmp/deploy
+          
+          # Copy the files to the web root (force overwrite)
+          sudo cp -r /tmp/deploy/*/* /var/www/html/
+          
+          # Set permissions
+          sudo chown -R apache:apache /var/www/html
+          
+          # Restart Apache
+          sudo systemctl restart httpd
