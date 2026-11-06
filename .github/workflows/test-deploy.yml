@@ -1,0 +1,51 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-ec2
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::183295419091:role/github-actions-deploy
+          aws-region: us-east-1
+
+      - name: Send deploy command
+        run: |
+          CMD_ID=$(aws ssm send-command \
+            --document-name "AWS-RunShellScript" \
+            --targets "Key=tag:App,Values=capstone" \
+            --parameters 'commands=["/usr/local/bin/deploy.sh"]' \
+            --comment "Deploy ${{ github.sha }}" \
+            --query "Command.CommandId" --output text)
+          echo "CMD_ID=$CMD_ID" >> "$GITHUB_ENV"
+
+      - name: Wait for the deployment to finish
+        run: |
+          for i in $(seq 1 30); do
+            STATUSES=$(aws ssm list-command-invocations \
+              --command-id "$CMD_ID" \
+              --query "CommandInvocations[].Status" --output text)
+            echo "Statuses: ${STATUSES:-none yet}"
+            if echo "$STATUSES" | grep -qE "Failed|Cancelled|TimedOut"; then
+              echo "Deployment failed on at least one instance"; exit 1
+            fi
+            if [ -n "$STATUSES" ] && ! echo "$STATUSES" | grep -qE "Pending|InProgress|Delayed"; then
+              echo "Deployment finished on all instances"; exit 0
+            fi
+            sleep 10
+          done
+          echo "Timed out waiting for the deployment"; exit 1
